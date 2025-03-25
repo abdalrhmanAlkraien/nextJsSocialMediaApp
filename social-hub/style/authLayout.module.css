@@ -1,0 +1,35 @@
+.wrapper {
+    min-width: 100vm;
+    min-height: 100vh;
+    background-color: #FFEDC9;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.container {
+    min-height: 85vh;
+    width: 90%;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    
+}
+
+.left {
+    flex: 1.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right {
+    flex: .9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+}

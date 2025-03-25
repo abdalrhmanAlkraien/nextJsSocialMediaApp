@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import React from 'react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,11 +21,15 @@ export const metadata = {
 
 
 const RootLayout = ({ children }) => (
+  <ClerkProvider>
+
   <html lang="en">
-    <body>
-      <AntdRegistry>{children}</AntdRegistry>
-    </body>
-  </html>
+  <body>
+    <AntdRegistry>{children}</AntdRegistry>
+  </body>
+</html>
+</ClerkProvider>
+
 );
 
 export default RootLayout;

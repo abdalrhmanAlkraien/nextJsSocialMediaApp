@@ -21,7 +21,16 @@ export const metadata = {
 
 
 const RootLayout = ({ children }) => (
-  <ClerkProvider>
+  <ClerkProvider
+    appearance={{
+      signIn: {
+        variables: {colorPrimary: "#F9AA11"}
+      },
+      signUp: {
+        variables: {colorPrimary: "#F9AA11"}
+      }
+    }}
+  >
 
   <html lang="en">
   <body>

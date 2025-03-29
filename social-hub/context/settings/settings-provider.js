@@ -8,7 +8,7 @@ export const SettingsContextProvider = ({children}) => {
 
     const [settings, setSettings] = useState({
 
-        theme: "dark"
+        theme: "lght"
     })
 
     return (

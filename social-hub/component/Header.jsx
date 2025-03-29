@@ -21,9 +21,9 @@ const Header = () => {
             alt="logo"
             className={css.logo}
           />
-<div style={{ display: "flex", alignItems: "center" }}>
-  <ModeButton />
-</div>
+    <div style={{ display: "flex", alignItems: "center" }}>
+    <ModeButton />
+    </div>
         </div>
       </Box>
     </div>

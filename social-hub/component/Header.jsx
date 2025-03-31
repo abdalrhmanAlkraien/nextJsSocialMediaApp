@@ -3,6 +3,7 @@ import css from "@/style/header.module.css";
 import Box from "./box/Box";
 import { Flex, Image } from "antd";
 import ModeButton from "./ModeButton";
+import { UserButton } from "@clerk/nextjs";
 const Header = () => {
   return (
     <div className={css.warrper}>
@@ -21,9 +22,12 @@ const Header = () => {
             alt="logo"
             className={css.logo}
           />
-    <div style={{ display: "flex", alignItems: "center" }}>
-    <ModeButton />
-    </div>
+
+          <Flex gap={50} align="center">
+          <ModeButton />
+          <UserButton afterSignOutUrl="/sign-in"/>
+          </Flex>
+
         </div>
       </Box>
     </div>

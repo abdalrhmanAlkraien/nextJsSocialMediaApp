@@ -4,6 +4,7 @@ import ThemeProvider from "@/lib/Theme";
 import React from "react";
 import css from "@/style/home.module.css";
 import Header from "@/component/Header";
+import Sidebar from "@/component/Sidebar";
 const MainLayout = ({ children }) => {
   return (
     <SettingsContextProvider>
@@ -19,6 +20,10 @@ const MainLayout = ({ children }) => {
         >
           <div className={css.warpper}>
             <Header />
+
+            <div className={css.container}>
+              <Sidebar/>
+            </div>
           </div>
         </Box>
         <div>{children}</div>

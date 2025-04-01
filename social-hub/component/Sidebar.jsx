@@ -8,20 +8,38 @@ import { Typography } from "antd";
 import { Icon } from "@iconify/react";
 import { useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import cx from 'classnames';
+
 const Sidebar = () => {
 
   const route = useRouter();
   const {signOut}= useClerk();
+  const pathname = useRouter();
+
+  const isActiveRoute = (route) => {
+    if(route.route === pathname || route.route === '/') return css.active;
+  }
+
+  const isActiveText = (route) => {
+
+    return isActiveRoute(route) && "var(--primary)";
+  }
+
 
   return (
     <div className={css.warrper}>
       <Box className={css.container}>
         {sideBarRoute().map((route, index) => (
-          <Link key={index} href={route.route} className={css.item}>
-            <Typography>
+          <Link key={index} href={route.route}
+          className= {cx(css.item, isActiveRoute(route))}>
+            <Typography style={{
+              color: isActiveText(route)
+            }}>
               <Icon icon={route.icon} width={"20px"} />
             </Typography>
-            <Typography className="typoSubtitle2">{route.name}</Typography>
+            <Typography style={{
+              color: isActiveText(route)
+            }}>{route.name}</Typography>
           </Link>
         ))}
 

@@ -16,6 +16,7 @@
     "@clerk/shared": "^3.2.0",
     "@iconify/react": "^4.1.1",
     "antd": "^5.11.5",
+    "classnames": "^2.5.1",
     "next": "15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

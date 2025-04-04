@@ -37,6 +37,7 @@ const Sidebar = () => {
     }));
   }, [setSettings]);
 
+  console.log('sidebar')
   return (
     <SidebarContainer isDrawOpen={isOpenMenu} setIsDrawOpen={handleClose}>
       <div className={css.warrper}>

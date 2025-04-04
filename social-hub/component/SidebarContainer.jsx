@@ -10,7 +10,6 @@ const SidebarContainer = ({
   ...other
 }) => {
   const { width } = useWindow();
-  console.log(isDrawOpen)
 
   if (width <= 1268 && isDrawOpen) {
     console.log("less than 1268");

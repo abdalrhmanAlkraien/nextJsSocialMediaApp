@@ -6,6 +6,7 @@ import ModeButton from "./ModeButton";
 import { UserButton } from "@clerk/nextjs";
 import SidebarButton from "./SidebarButton";
 const Header = () => {
+  console.log("header")
   return (
     <div className={css.warrper}>
       <Box

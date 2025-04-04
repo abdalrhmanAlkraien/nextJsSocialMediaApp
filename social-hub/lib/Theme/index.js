@@ -17,7 +17,6 @@ const ThemeProvider = ({ children }) => {
     return globalTheme === "dark" ? "black" : "#F4F6F8";
   }, [globalTheme]);
 
-  console.log("theme")
   return (
     <ConfigProvider
       theme={{

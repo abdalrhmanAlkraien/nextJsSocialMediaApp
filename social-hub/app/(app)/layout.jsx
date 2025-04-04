@@ -23,10 +23,12 @@ const MainLayout = ({ children }) => {
 
             <div className={css.container}>
               <Sidebar/>
+              <div className={css.pageBody}>{children}</div>
+
             </div>
+
           </div>
         </Box>
-        <div>{children}</div>
       </ThemeProvider>
     </SettingsContextProvider>
   );

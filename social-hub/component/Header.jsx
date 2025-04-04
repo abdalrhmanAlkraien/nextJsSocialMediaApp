@@ -4,6 +4,7 @@ import Box from "./box/Box";
 import { Flex, Image } from "antd";
 import ModeButton from "./ModeButton";
 import { UserButton } from "@clerk/nextjs";
+import SidebarButton from "./SidebarButton";
 const Header = () => {
   return (
     <div className={css.warrper}>
@@ -12,14 +13,20 @@ const Header = () => {
           height: "100%",
         }}
       >
+
+
         <div className={css.header}>
 
+        <div className={css.sidebarButton}>
+          <SidebarButton/>
+        </div>
             
           <Image
             src="/images/logo.png"
             width={150}
             height={40}
             alt="logo"
+            preview= {false}
             className={css.logo}
           />
 

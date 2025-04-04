@@ -15,6 +15,7 @@
     "@clerk/nextjs": "^6.12.9",
     "@clerk/shared": "^3.2.0",
     "@iconify/react": "^4.1.1",
+    "@prisma/client": "^6.5.0",
     "antd": "^5.11.5",
     "classnames": "^2.5.1",
     "next": "15.2.3",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.2.3"
+    "eslint-config-next": "15.2.3",
+    "prisma": "^6.5.0"
   }
 }

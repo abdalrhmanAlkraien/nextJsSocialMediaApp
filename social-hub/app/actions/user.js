@@ -3,26 +3,26 @@
 import { db } from "@/lib/db";
 
 export const createUser = async (user) => {
-  const { id, first_name, last_name, email_addresses, image_url, username } = user;
+  const { id, first_name, last_name, email_addresses, image_url, username } =
+    user;
 
   try {
-    console.log(id)
+    console.log(id);
     const userExist = db.user.findUnique({
       where: {
         id,
       },
     });
-    
 
     if (!userExist) {
-        console.log( await userExist)
+      console.log(await userExist);
       // update user
-      console.log("the user is exist")
+      console.log("the user is exist");
 
       return;
     }
 
-    console.log("saving data")
+    console.log("saving data");
     await db.user.create({
       data: {
         id,
@@ -30,7 +30,7 @@ export const createUser = async (user) => {
         last_name,
         email_addresses,
         image_url,
-        username
+        username,
       },
     });
   } catch (e) {

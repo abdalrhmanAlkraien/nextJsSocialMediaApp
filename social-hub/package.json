@@ -20,7 +20,8 @@
     "classnames": "^2.5.1",
     "next": "15.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "svix": "^1.63.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

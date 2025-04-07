@@ -1,10 +1,18 @@
 "use server";
 
 import { db } from "@/lib/db";
+import { useUser } from "@clerk/nextjs";
 
 export const createUser = async (user) => {
-  const { id, first_name, last_name, email_addresses, image_url, username } =
-    user;
+
+    const {
+        id,
+        firstName,
+        lastName,
+        emailAddresses,
+        imageUrl,
+        username,
+      } = user;
 
   try {
     console.log(id);
@@ -26,11 +34,11 @@ export const createUser = async (user) => {
     await db.user.create({
       data: {
         id,
-        first_name,
-        last_name,
-        email_addresses,
-        image_url,
-        username,
+        firstName,
+        lastName,
+        email: emailAddresses,
+        imageUrl,
+        userName: username
       },
     });
   } catch (e) {

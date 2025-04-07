@@ -47,6 +47,7 @@ export async function POST(req) {
       try {
         console.log("the eventType is user.created");
 
+        console.log(evt.data);
         const {
           id,
           first_name,
@@ -76,7 +77,7 @@ export async function POST(req) {
     case "session.created":
       try {
         console.log("the eventType is session.created");
-
+        console.log(evt.data);
         const {
           id,
           first_name,

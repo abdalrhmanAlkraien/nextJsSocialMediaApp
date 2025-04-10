@@ -5,17 +5,17 @@ import { useUser } from "@clerk/nextjs";
 
 export const createUser = async (user) => {
 
+    console.log("start create user")
     const {
         id,
-        firstName,
-        lastName,
-        emailAddresses,
-        imageUrl,
-        username,
+        first_name: firstName,
+        last_name: lastName,
+        emailAddress,
+        image_url: imageUrl,
+        username: userName
       } = user;
 
   try {
-    console.log(id);
     const userExist = db.user.findUnique({
       where: {
         id,
@@ -23,7 +23,6 @@ export const createUser = async (user) => {
     });
 
     if (!userExist) {
-      console.log(await userExist);
       // update user
       console.log("the user is exist");
 
@@ -36,9 +35,9 @@ export const createUser = async (user) => {
         id,
         firstName,
         lastName,
-        email: emailAddresses,
+        email: emailAddress,
         imageUrl,
-        userName: username
+        userName
       },
     });
   } catch (e) {

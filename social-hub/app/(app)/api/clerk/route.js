@@ -1,7 +1,8 @@
 import { createUser } from "@/app/actions/user";
-import { message } from "antd";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
+
+// export const runtime = 'nodejs'; // Force Node.js runtime instead of Edge
 
 export async function POST(req) {
   const WEB_SECRET = process.env.WEB_HOOK_SECRET;
@@ -46,8 +47,6 @@ export async function POST(req) {
     case "user.created":
       try {
         console.log("the eventType is user.created");
-
-        console.log(evt.data);
         const {
           id,
           first_name,
@@ -77,29 +76,6 @@ export async function POST(req) {
     case "session.created":
       try {
         console.log("the eventType is session.created");
-        console.log(evt.data);
-        const {
-          id,
-          first_name,
-          last_name,
-          email_addresses,
-          image_url,
-          username,
-        } = evt.data;
-
-        const emailAddress =
-          Array.isArray(email_addresses) && email_addresses.length > 0
-            ? email_addresses[0].email_address
-            : null;
-
-        await createUser({
-          id,
-          first_name,
-          last_name,
-          emailAddress,
-          image_url,
-          username,
-        });
       } catch (e) {
         throw new Error("field save on db");
       }

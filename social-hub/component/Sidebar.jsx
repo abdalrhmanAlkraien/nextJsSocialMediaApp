@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "./box/Box";
 import css from "@/style/sidebar.module.css";
 import { sideBarRoute } from "@/lib/RouteUrl";
@@ -37,51 +37,55 @@ const Sidebar = () => {
     }));
   }, [setSettings]);
 
+  const [mounted, setMounted]= useState(false)
   console.log('sidebar')
+  useEffect(()=> {setMounted(true)}, [])
   return (
-    <SidebarContainer isDrawOpen={isOpenMenu} setIsDrawOpen={handleClose}>
-      <div className={css.warrper}>
-        <Box className={css.container}>
-          {sideBarRoute().map((route, index) => (
-            <Link
-              key={index}
-              href={route.route}
-              className={cx(css.item, isActiveRoute(route))}
-            >
-              <Typography
-                style={{
-                  color: isActiveText(route),
-                }}
+    mounted && (
+      <SidebarContainer isDrawOpen={isOpenMenu} setIsDrawOpen={handleClose}>
+        <div className={css.warrper}>
+          <Box className={css.container}>
+            {sideBarRoute().map((route, index) => (
+              <Link
+                key={index}
+                href={route.route}
+                className={cx(css.item, isActiveRoute(route))}
               >
-                <Icon icon={route.icon} width={"20px"} />
-              </Typography>
-              <Typography
-                style={{
-                  color: isActiveText(route),
-                }}
-              >
-                {route.name}
-              </Typography>
-            </Link>
-          ))}
+                <Typography
+                  style={{
+                    color: isActiveText(route),
+                  }}
+                >
+                  <Icon icon={route.icon} width={"20px"} />
+                </Typography>
+                <Typography
+                  style={{
+                    color: isActiveText(route),
+                  }}
+                >
+                  {route.name}
+                </Typography>
+              </Link>
+            ))}
 
-          {
-            <Link
-              href={""}
-              onClick={() => {
-                signOut(() => route.push("/sign-in"));
-              }}
-              className={css.item}
-            >
-              <Typography>
-                <Icon icon="majesticons:logout-half-circle" width={"20px"} />
-              </Typography>
-              <Typography>Sign out</Typography>
-            </Link>
-          }
-        </Box>
-      </div>
-    </SidebarContainer>
+            {
+              <Link
+                href={""}
+                onClick={() => {
+                  signOut(() => route.push("/sign-in"));
+                }}
+                className={css.item}
+              >
+                <Typography>
+                  <Icon icon="majesticons:logout-half-circle" width={"20px"} />
+                </Typography>
+                <Typography>Sign out</Typography>
+              </Link>
+            }
+          </Box>
+        </div>
+      </SidebarContainer>
+    )
   );
 };
 

@@ -1,0 +1,19 @@
+.warrper {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 20%;
+}
+
+.side {
+
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}

@@ -1,4 +1,3 @@
-import {Cloudinary} from "@cloudinary/url-gen";
 import { v2 as cloudinary } from 'cloudinary';
 
 // Configuration

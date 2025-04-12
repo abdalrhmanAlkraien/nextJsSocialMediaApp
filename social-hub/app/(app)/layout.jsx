@@ -5,30 +5,34 @@ import React from "react";
 import css from "@/style/home.module.css";
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
+import { Toaster } from "react-hot-toast";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 const MainLayout = ({ children }) => {
+  const queryClient = new QueryClient();
   return (
     <SettingsContextProvider>
       <ThemeProvider>
-        <Box
-          children={children}
-          type="baseBg"
-          style={{
-            position: "relative",
-            width: "100vm",
-            height: "100vh ",
-          }}
-        >
-          <div className={css.warpper}>
-            <Header />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Box
+            children={children}
+            type="baseBg"
+            style={{
+              position: "relative",
+              width: "100vm",
+              height: "100vh ",
+            }}
+          >
+            <div className={css.warpper}>
+              <Header />
 
-            <div className={css.container}>
-              <Sidebar/>
-              <div className={css.pageBody}>{children}</div>
-
+              <div className={css.container}>
+                <Sidebar />
+                <div className={css.pageBody}>{children}</div>
+              </div>
             </div>
-
-          </div>
-        </Box>
+          </Box>
+        </HydrationBoundary>
+        <Toaster />
       </ThemeProvider>
     </SettingsContextProvider>
   );

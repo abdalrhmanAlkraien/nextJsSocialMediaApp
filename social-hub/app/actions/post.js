@@ -44,3 +44,73 @@ export const createPost = async (post) => {
         console.error("could not save the new post", e)
     }
 }
+export const getPostFeed = async (lastCursor)=> {
+    console.log("Start work")
+    try {
+        let take = 5;
+        
+        const fetchQuery = {
+            include: {
+                author: true,
+            },
+            take,
+            ...(lastCursor && {
+                skip: 1,
+                cursor: {
+                    id: lastCursor
+                }
+            }),
+            orderBy: { 
+                createdAt: 'desc'
+            }
+        };
+
+        const posts = await db.Post.findMany(fetchQuery);
+
+
+        if(posts.length === 0) {
+            {
+                return buildResponse()
+            }
+        } else {
+            
+            console.log(posts.length)
+
+            const lastPostId = posts[posts.length - 1].id;
+            console.log(lastPostId);
+
+            const hasMoreQuery = {
+                where: {
+                    id: lastPostId
+                }
+            }
+            
+            let morePosts = await db.Post.count(hasMoreQuery);
+            console.log(`has more ${morePosts}`)
+
+            return buildResponse({
+                data: posts,
+                lastCursor: lastPostId, 
+                hasMore: morePosts.length > 0
+            });
+        }
+        
+    } catch (error) {
+
+        console.error(error);
+
+        return buildResponse(); 
+    }
+
+}
+
+const buildResponse = ({ data = [], lastCursor = null, hasMore = false } = {}) => {
+
+    return {
+      data,
+      metadata: {
+        lastCursor,
+        hasMore,
+      },
+    };
+  };

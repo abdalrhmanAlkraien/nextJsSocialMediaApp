@@ -19,7 +19,7 @@ const MainLayout = ({ children }) => {
             style={{
               position: "relative",
               width: "100vm",
-              height: "100vh ",
+              height: "300vh ",
             }}
           >
             <div className={css.warpper}>

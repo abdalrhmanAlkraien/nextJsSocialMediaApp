@@ -6,22 +6,30 @@ import { Flex, Spin } from "antd";
 import Typography from "antd/es/typography/Typography";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import Post from "./Post";
 // import { useInView } from "react-intersection-observer";
 
 const RetrivePost = () => {
   const { ref, inView } = useInView();
 
-  const checkLastViewRef = (index, page)=> {
-
-    if(index === page?.data?.length -1) {
-        return true
+  const checkLastViewRef = (index, page) => {
+    if (index === page?.data?.length - 1) {
+      return true;
     } else {
-        return false;
+      return false;
     }
-  }
+  };
 
-
-  const { data, isLoading, isError, isSuccess, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const {
+    data,
+    isLoading,
+    isError,
+    isSuccess,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+  } = useInfiniteQuery({
     queryKey: ["posts"],
     queryFn: ({ pageParam = "" }) => getPostFeed(pageParam),
     getNextPageParam: (lastPage) => {
@@ -35,25 +43,13 @@ const RetrivePost = () => {
   });
 
   useEffect(() => {
-
-    if(inView && hasNextPage) {
-        fetchNextPage()
+    if (inView && hasNextPage) {
+      fetchNextPage();
     }
-
-  }, [hasNextPage, inView, fetchNextPage])
-
+  }, [hasNextPage, inView, fetchNextPage]);
 
   if (isError) {
     return <Typography>Something went wrong</Typography>;
-  }
-
-  if (isLoading) {
-    return (
-      <Flex vertical align="center" gap="large">
-        <Spin />
-        <Typography>Loadaing...</Typography>
-      </Flex>
-    );
   }
 
   if (isSuccess) {
@@ -64,21 +60,28 @@ const RetrivePost = () => {
             checkLastViewRef(index, page) ? (
               <div
                 key={post?.id}
-                style={{ width: "100%", background: "blue", height: "10rem" }}
+                style={{ width: "100%"}}
                 ref={ref}
               >
-                <span>${post?.id}</span>
+                <Post data={post}/>
               </div>
             ) : (
               <div
                 key={post?.id}
-                style={{ width: "100%", background: "blue", height: "10rem" }}
+                style={{ width: "100%"}}
                 ref={ref}
               >
-                <span>${post?.id}</span>
+                <Post data={post}/>
               </div>
             )
           )
+        )}
+
+        {(isLoading || isFetchingNextPage || isFetching) && (
+          <Flex vertical align="center" gap="large">
+            <Spin />
+            <Typography>Loadaing...</Typography>
+          </Flex>
         )}
       </Flex>
     );

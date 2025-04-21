@@ -10,7 +10,9 @@ const MainPage = () => {
     <div className={css.warrper}>
       <div className={css.main}>
         <PublishPost />
-        <RetrivePost />
+        <div className={css.retrivePost}>
+          <RetrivePost />
+        </div>
       </div>
       <div className={css.side}>
       <h1>Side</h1>

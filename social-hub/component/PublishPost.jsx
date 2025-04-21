@@ -78,17 +78,7 @@ const PublishPost = () => {
   // console.log(user);
   return (
     <>
-
       <div className={css.wrapper}>
-      <Spin spinning = {isPending}
-      tip = {
-        <Typography className="typoBody1" style={{marginTop: "1rem"}}>
-
-          Uploading post ...
-        </Typography>
-      }>
-
-      </Spin>
         <Box className={css.container}>
           <div className={css.up_section}>
             <div className={css.avatar_box}>

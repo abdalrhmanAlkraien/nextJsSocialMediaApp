@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   overflow: hidden;
 }
 .container {
@@ -17,9 +17,6 @@
   flex-direction: row;
   text-align: center;
   align-items: center;
-  /* padding-top: 1rem; */
-  /* margin: 1rem; */
-  /* gap: 1rem; */
   width: 100%;
 }
 

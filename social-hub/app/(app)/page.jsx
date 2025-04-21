@@ -6,6 +6,7 @@ import RetrivePost from "@/component/RetrivePost";
 import PublishPost from "@/component/PublishPost";
 
 const MainPage = () => {
+  console.log("Load MainPage component")
   return (
     <div className={css.warrper}>
       <div className={css.main}>

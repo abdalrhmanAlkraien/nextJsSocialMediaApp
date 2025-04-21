@@ -10,6 +10,8 @@ import Post from "./Post";
 // import { useInView } from "react-intersection-observer";
 
 const RetrivePost = () => {
+
+  console.log("render RetrivePost component")   
   const { ref, inView } = useInView();
 
   const checkLastViewRef = (index, page) => {
@@ -61,7 +63,7 @@ const RetrivePost = () => {
               <div
                 key={post?.id}
                 style={{ width: "100%"}}
-                ref={ref}
+                ref={checkLastViewRef(index, page) ? ref : null}
               >
                 <Post data={post}/>
               </div>
@@ -95,3 +97,4 @@ const RetrivePost = () => {
 };
 
 export default RetrivePost;
+

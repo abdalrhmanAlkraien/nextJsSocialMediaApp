@@ -4,7 +4,6 @@ import { currentUser } from "@clerk/nextjs/server";
 
 export const addLike = async (post)=> {
 
-    console.log("start add like")
     const user = await currentUser();
     try {
 
@@ -35,7 +34,6 @@ export const addLike = async (post)=> {
 
 export const getLikeCount = async (postId) => {
 
-    console.log("get like count on post ", postId)
     
     try {
         const count = await db.Like.count({

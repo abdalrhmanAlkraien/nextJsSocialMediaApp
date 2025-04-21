@@ -4,13 +4,15 @@ import { Button, Flex, Image, Typography } from "antd";
 import Avatar from "antd/es/avatar/Avatar";
 import dayjs from "dayjs";
 import css from "@/style/post.module.css";
-import { Icon } from "@iconify/react";
 import LikeButton from "./LikeButton";
 import CommentButton from "./CommentButton";
 
+
 const Post = ({ data }) => {
 
-    const post = useMemo(() => ({ data }), []);
+    // console.log("render post component")
+    const post = useMemo(() => data, [data?.id]);
+
 
     return (
     <div className={css.wrapper}>

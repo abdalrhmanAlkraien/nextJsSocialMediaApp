@@ -4,18 +4,15 @@ import { currentUser } from "@clerk/nextjs/server";
 import { uploadFile } from "./uploadFile";
 export const createPost = async (post) => {
 
-    console.log("start create Post method")
     try {
-        console.log(post)
         const {postText, media} = post;
         let cld_id;
         let asset_url;
         const user = await currentUser();
-        console.log(`the current user is  ${user?.id}`)
+
         if(media) {
             // upload on cloudinary
             const res = await uploadFile(media, `/posts/${user?.id}`)
-            console.log(`the response from cloudinary ${ await res}`)
             const {public_id, secure_url} = res;
             cld_id = public_id
             asset_url = secure_url
@@ -36,7 +33,6 @@ export const createPost = async (post) => {
             }
         })
 
-        console.log(newPost)
         return {
             data: newPost
         }
@@ -45,7 +41,6 @@ export const createPost = async (post) => {
     }
 }
 export const getPostFeed = async (lastCursor)=> {
-    console.log("Start work")
     try {
         let take = 5;
         
@@ -74,10 +69,7 @@ export const getPostFeed = async (lastCursor)=> {
             }
         } else {
             
-            console.log(posts.length)
-
             const lastPostId = posts[posts.length - 1].id;
-            console.log(lastPostId);
 
             const hasMoreQuery = {
                 where: {
@@ -86,7 +78,6 @@ export const getPostFeed = async (lastCursor)=> {
             }
             
             let morePosts = await db.Post.count(hasMoreQuery);
-            console.log(`has more ${morePosts}`)
 
             return buildResponse({
                 data: posts,

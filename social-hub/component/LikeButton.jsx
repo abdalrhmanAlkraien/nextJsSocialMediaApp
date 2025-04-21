@@ -5,19 +5,22 @@ import { Button, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 
 const LikeButton = ({ post }) => {
-  console.log("the post id is ", post.id);
+//   console.log("render Like Button component ", post.id);
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
 
-    setLikeCount(getLikeCount(post?.id) ?? 0);
+    if (!post?.id) return;
+
+    const count = getLikeCount(post.id) ?? 0;
+    setLikeCount(prev => (prev !== count ? count : prev));
+
   }, [post?.id]);
 
   const addNewLike = async () => {
-    setLikeCount(prev => prev + 1);
-    const count = addLike(post);
-    setLikeCount(count);
-  }
+    const count = await addLike(post); // assume it returns correct new count
+    setLikeCount(prev => (prev !== count ? count : prev)); // update only if needed
+  };
 
   return (
     <Button onClick={addNewLike} itemID={post?.id}>

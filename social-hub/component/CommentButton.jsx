@@ -1,12 +1,23 @@
+import { getCommentCount } from "@/app/actions/comment";
 import { Icon } from "@iconify/react";
 import { Button, Typography } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const CommentButton = ({post, comment}) => {
+const CommentButton = ({ post, onclick }) => {
+  const [commentCount, setCommentCount] = useState(0);
+ useEffect(()=> {
+
+    if(post?.id) {
+
+        setCommentCount(getCommentCount(post))
+    }
+ }, [post?.id])
+
   return (
-    <Button>
+    <Button onClick={onclick}>
       <Icon icon={"material-symbols:comment"} />
       <Typography>Comment</Typography>
+      <Typography>{commentCount}</Typography>
     </Button>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Box from "./box/Box";
 import { Button, Flex, Image, Typography } from "antd";
 import Avatar from "antd/es/avatar/Avatar";
@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import css from "@/style/post.module.css";
 import LikeButton from "./LikeButton";
 import CommentButton from "./CommentButton";
+import CommentBox from "./CommentBox";
 
 
 const Post = ({ data }) => {
@@ -13,6 +14,12 @@ const Post = ({ data }) => {
     // console.log("render post component")
     const post = useMemo(() => data, [data?.id]);
 
+    const [isEnableCommentBox, setIsEnableCommentBox] = useState(false);
+
+    const handleCommentBox = ()=> {
+
+        setIsEnableCommentBox(prev=> !prev)
+    }
 
     return (
     <div className={css.wrapper}>
@@ -62,8 +69,15 @@ const Post = ({ data }) => {
           <Flex gap={".5rem"}>
 
             <LikeButton post={post}/>
-            <CommentButton post={post} comment={data}/>
+            <CommentButton post={post} onclick= {handleCommentBox}/>
           </Flex>
+         {isEnableCommentBox && (
+
+            <Flex vertical align="center" justify="center">
+                <CommentBox />   
+            </Flex>
+         )}
+
         </div>
       </Box>
     </div>

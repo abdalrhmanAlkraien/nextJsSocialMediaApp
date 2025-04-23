@@ -72,8 +72,14 @@ const CommentBox = ({post}) => {
           comments.map((comment) => (
             
             <Flex vertical gap={0.5}>
-              <Flex gap={0.3} style={{ width: "30%" }} align="center">
-                <Image></Image>
+              <Flex gap={10} style={{ width: "30%" }} align="center">
+                <Image
+                  src= {comment?.author?.imageUrl}
+                  height={40}
+                  width={40}
+                  preview={false}
+                  style={{ borderRadius: "50%" }}
+                  ></Image>
                 <Typography className="typoSubtitle2">
                   {comment?.author?.firstName} {comment?.author?.lastName}
                 </Typography>

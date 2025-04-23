@@ -1,15 +1,18 @@
+'use client'
 import { getCommentCount } from "@/app/actions/comment";
 import { Icon } from "@iconify/react";
 import { Button, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 
 const CommentButton = ({ post, onclick }) => {
+
   const [commentCount, setCommentCount] = useState(0);
+
  useEffect(()=> {
 
     if(post?.id) {
 
-        setCommentCount(getCommentCount(post))
+        setCommentCount(getCommentCount(post.id))
     }
  }, [post?.id])
 

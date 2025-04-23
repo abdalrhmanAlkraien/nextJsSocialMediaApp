@@ -71,10 +71,10 @@ const Post = ({ data }) => {
             <LikeButton post={post}/>
             <CommentButton post={post} onclick= {handleCommentBox}/>
           </Flex>
-         {isEnableCommentBox && (
+         {isEnableCommentBox && post && (
 
-            <Flex vertical align="center" justify="center">
-                <CommentBox />   
+            <Flex vertical align="flex-start" justify="flex-start">
+                <CommentBox post={post}/>   
             </Flex>
          )}
 

@@ -35,9 +35,6 @@ const RetrivePost = () => {
     queryKey: ["posts"],
     queryFn: ({ pageParam = "" }) => getPostFeed(pageParam),
     getNextPageParam: (lastPage) => {
-      console.log(
-        `the lastPage?.metadata.lastCursor ${lastPage?.metadata.lastCursor}`
-      );
       return lastPage?.metadata.lastCursor;
     },
     refetchOnWindowFocus: false, // 👈 prevent on window focus

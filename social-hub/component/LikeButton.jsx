@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 const LikeButton = ({ post }) => {
 //   console.log("render Like Button component ", post.id);
   const [likeCount, setLikeCount] = useState(0);
-
   useEffect(() => {
 
     if (!post?.id) return;

@@ -1,0 +1,10 @@
+.container {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.commentBox {
+    border-radius: 1rem;
+    background-color: rgba(5, 5, 5, 0.258);
+    
+}
